@@ -20,28 +20,40 @@ namespace ITEA_Homework9v2
         public string Icon { get; set; }
         public string Name { get; set; }
         public bool IsWhite { get; set; }
-        public bool IsOnWhite { get; set; }
         public bool IsAlive { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public Figure(string icon, string name, bool isWhite, bool isOnWhite, int x, int y)
+        public int oldX { get; set; }
+        public int oldY { get; set; }
+        public Figure(string icon, string name, bool isWhite, int x, int y)
         {
             Icon = icon;
             Name = name;
             IsWhite = isWhite;
-            IsOnWhite = isOnWhite;
             if (x > 7 || x < -1)
             {
                 X = -1;
             }
-            else X = x;
+            else
+            {
+                X = x;
+                oldX = x;
+            }
             if (y > 7 || y < -1)
             {
                 Y = -1;
             }
-            else Y = y;
+            else
+            {
+                Y = y;
+                oldY = y;
+            }
             IsAlive = true;
         }
-        public abstract void Move(char letter, int number);
+        public Figure()
+        {
+
+        }
+        public abstract void Move(int oldX, int oldY, int newX, int newY);
     }
 }

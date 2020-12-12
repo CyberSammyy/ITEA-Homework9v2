@@ -8,10 +8,11 @@ namespace ITEA_Homework9v2
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public bool IsFigureKeeper { get; set; }
+        public bool IsFigureKeeper { get; set; } = false;
         public bool IsWhite { get; set; }
         public bool CanMove { get; set; }
         public string Icon { get; set; }
+        public Figure figure;
         public Cell(int x, int y)
         {
             X = x;
@@ -26,6 +27,18 @@ namespace ITEA_Homework9v2
                 IsWhite = false;
                 Icon = "⬜";
             }
+            CanMove = true;
+        }
+        public void Reset()
+        {
+            if (IsWhite)
+            {
+                Icon = "⬛";
+            }
+            else Icon = "⬜";
+            IsFigureKeeper = false;
+            CanMove = true;
+            figure = null;
         }
     }
 }
