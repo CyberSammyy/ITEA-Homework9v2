@@ -6,7 +6,7 @@ using static System.Math;
 
 namespace ITEA_Homework9v2
 {
-    class Pawn : Figure
+    class Pawn : Figure, IShort
     {
         public int CellsPerMove { get; set; }
         public Pawn(string icon, string name, bool isWhite, int x, int y)

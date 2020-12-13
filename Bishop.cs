@@ -11,7 +11,11 @@ namespace ITEA_Homework9v2
         public Bishop(string icon, string name, bool isWhite, int x, int y)
             : base(icon, name, isWhite, x, y)
         {
-
+            if (ChessMap.cells[x, y].IsWhite)
+            {
+                IsOnWhite = true;
+            }
+            else IsOnWhite = false;
         }
         public override bool Move(int oldX, int oldY, int newX, int newY)
         {

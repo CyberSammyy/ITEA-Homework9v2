@@ -11,11 +11,16 @@ namespace ITEA_Homework9v2
         public Rook(string icon, string name, bool isWhite, int x, int y)
             : base(icon, name, isWhite, x, y)
         {
-
+            if (ChessMap.cells[x, y].IsWhite)
+            {
+                IsOnWhite = true;
+            }
+            else IsOnWhite = false;
         }
         public bool Check(int oldX, int oldY, int newX, int newY)
         {
             int count = 0;
+
             if (Abs(oldX - newX) != 0 && oldY == newY)
             {
                 if (oldX > newX)
