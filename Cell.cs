@@ -17,16 +17,16 @@ namespace ITEA_Homework9v2
         {
             X = x;
             Y = y;
-            if (y % 2 == 0 && x % 2 == 0) 
-            {
-                IsWhite = true;
-                Icon = "⬛";
-            }
-            else
-            {
-                IsWhite = false;
-                Icon = "⬜";
-            }
+            //if (y % 2 == 0 && x % 2 == 0) 
+            //{
+            //    IsWhite = true;
+            //    Icon = "⬛";
+            //}
+            //else
+            //{
+            //    IsWhite = false;
+            //    Icon = "⬜";
+            //}
             CanMove = true;
         }
         public void Reset()

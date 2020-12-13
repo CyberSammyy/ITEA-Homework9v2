@@ -12,38 +12,85 @@ namespace ITEA_Homework9v2
         public static int MoveCount { get; set; } = 0;
         public static void GenerateMap()
         {
-            for(int i = 0; i < cells.GetLength(0); i++)
+            for(int i = 0; i < 8; i++)
             {
-                for(int j = 0; j < cells.GetLength(1); j++)
+                for(int j = 0; j < 8; j++)
                 {
                     cells[i, j] = new Cell(i, j);
+                    if ((i + j) % 2 != 0)
+                    {
+                        cells[i, j].Icon = "⬜";
+                        cells[i, j].IsWhite = false;
+                    }
+                    else
+                    {
+                        cells[i, j].Icon = "⬛";
+                        cells[i, j].IsWhite = true;
+                    }
                 }
             }
+            Render();
             SetFigures();
         }
-        public static void Move(int oldX, int oldY, int newX, int newY)
+        public static bool MoveWhite(int oldX, int oldY, int newX, int newY)
         {
-            if (cells[oldX - 1, oldY - 1].figure != null && oldX < 9 && oldX > 0 && oldY < 9 && oldY > 0 && newX < 9 && newX > 0 && newX < 9 && newX > 0)
+            if (cells[oldX - 1, oldY - 1].figure != null && cells[oldX - 1, oldY - 1].figure.IsWhite && oldX < 9 && oldX > 0 && oldY < 9 && oldY > 0 && newX < 9 && newX > 0 && newX < 9 && newX > 0)
             {
                 if (cells[oldX - 1, oldY - 1].figure == null)
                 {
                     Render();
-                    return;
+                    return false;
                 }
-                cells[oldX - 1, oldY - 1].figure.Move(oldX - 1, oldY - 1, newX - 1, newY - 1);
-                Render();
-                MoveCount++;
+                if(cells[oldX - 1, oldY - 1].figure.Move(oldX - 1, oldY - 1, newX - 1, newY - 1))
+                {
+                    Render();
+                    return true;
+                }
+                else return false;
             }
             else
-                return;
+            {
+                Render();
+                return false;
+            }
+        }
+        public static bool MoveBlack(int oldX, int oldY, int newX, int newY)
+        {
+            if (cells[oldX - 1, oldY - 1].figure != null && !cells[oldX - 1, oldY - 1].figure.IsWhite && oldX < 9 && oldX > 0 && oldY < 9 && oldY > 0 && newX < 9 && newX > 0 && newY < 9 && newY > 0)
+            {
+                if (cells[oldX - 1, oldY - 1].figure == null)
+                {
+                    Render();
+                    return false;
+                }
+                if (cells[oldX - 1, oldY - 1].figure.Move(oldX - 1, oldY - 1, newX - 1, newY - 1))
+                {
+                    Render();
+                    return true;
+                }
+                else return false;
+            }
+            else
+            {
+                Render();
+                return false;
+            }
         }
         private static void SetFigures()
         {
             for (int i = 0; i < 8; i++)
             {
-                figures[6,i] = new Pawn("♟", "Pawn_white", true, 6, i);
-                figures[1,i] = new Pawn("♙ ", "Pawn_black", false, 1, i);
+                figures[6,i] = new Pawn("♟", $"Pawn_white{i + 1}", true, 6, i);
+                figures[1,i] = new Pawn("♙ ", $"Pawn_black{i + 1}", false, 1, i);
             }
+            figures[7, 2] = new Bishop("♝ ", "Bishop_white1", true, 7, 2);
+            figures[7, 5] = new Bishop("♝ ", "Bishop_white2", true, 7, 2);
+            figures[0, 5] = new Bishop("♗ ", "Bishop_black1", false, 0, 2);
+            figures[0, 2] = new Bishop("♗ ", "Bishop_black2", false, 0, 2);
+            figures[0, 0] = new Rook("♖ ", "Rook_black1", false, 0, 0);
+            figures[0, 7] = new Rook("♖ ", "Rook_black2", false, 0, 7);
+            figures[7, 0] = new Rook("♜ ", "Rook_white1", true, 7, 0);
+            figures[7, 7] = new Rook("♜ ", "Rook_white2", true, 7, 7);
             //
             //
             //
@@ -63,9 +110,9 @@ namespace ITEA_Homework9v2
             }
             Render();
         }
-        public static bool IsPositionAvailable(int x, int y)
+        public static bool IsPositionAvailable(int x, int y, Figure figure)
         {
-            if (cells[x,y].figure == null)
+            if (cells[x, y].figure == null || cells[x, y].figure.Name == figure.Name)
             {
                 return true;
             }

@@ -4,17 +4,6 @@ using System.Text;
 
 namespace ITEA_Homework9v2
 {
-    public enum LettersToNumbers
-    {
-        A = 0,
-        B = 1,
-        C = 2,
-        D = 3,
-        E = 4,
-        F = 5,
-        G = 6,
-        H = 7
-    }
     public abstract class Figure
     {
         public string Icon { get; set; }
@@ -25,6 +14,7 @@ namespace ITEA_Homework9v2
         public int Y { get; set; }
         public int oldX { get; set; }
         public int oldY { get; set; }
+        public int MoveCounter { get; set; } = 0;
         public Figure(string icon, string name, bool isWhite, int x, int y)
         {
             Icon = icon;
@@ -54,6 +44,6 @@ namespace ITEA_Homework9v2
         {
 
         }
-        public abstract void Move(int oldX, int oldY, int newX, int newY);
+        public abstract bool Move(int oldX, int oldY, int newX, int newY);
     }
 }
