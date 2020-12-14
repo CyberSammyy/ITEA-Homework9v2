@@ -108,6 +108,12 @@ namespace ITEA_Homework9v2
         {
             if (IsAlive)
             {
+                if (Attack(oldX, oldY, newX, newY, this))
+                {
+                    ChessMap.ChangePos(oldX, oldY, newX, newY);
+                    MoveCounter++;
+                    return true;
+                }
                 if (Check(oldX, oldY, newX, newY) && ChessMap.IsPositionAvailable(newX, newY, this))
                 {
                     ChessMap.ChangePos(oldX, oldY, newX, newY);
@@ -127,7 +133,176 @@ namespace ITEA_Homework9v2
 
         public override bool Attack(int oldX, int oldY, int newX, int newY, Figure figure)
         {
-            return true;
+            int count = 0;
+            if (IsWhite && ChessMap.cells[newX, newY].figure != null && !ChessMap.cells[newX, newY].figure.IsWhite)
+            {
+                if (Abs(oldX - newX) != 0 && oldY == newY)
+                {
+                    if (oldX > newX)
+                    {
+                        int i = oldX;
+                        while (i > newX)
+                        {
+                            if (!ChessMap.IsPositionAvailable(i, newY, this))
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                i--;
+                                count++;
+                            }
+                        }
+                    }
+                    else if (oldX < newX)
+                    {
+                        int i = oldX;
+                        while (i < newX)
+                        {
+                            if (!ChessMap.IsPositionAvailable(i, newY, this))
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                i++;
+                                count++;
+                            }
+                        }
+                    }
+                    if (count == Abs(oldX - newX))
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+                else if (Abs(oldY - newY) != 0 && oldX == newX)
+                {
+                    if (oldY > newY)
+                    {
+                        int i = oldY;
+                        while (i > newY)
+                        {
+                            if (!ChessMap.IsPositionAvailable(newX, i, this))
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                i--;
+                                count++;
+                            }
+                        }
+                    }
+                    if (oldY < newY)
+                    {
+                        int i = oldY;
+                        while (i < newY)
+                        {
+                            if (!ChessMap.IsPositionAvailable(newX, i, this))
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                i++;
+                                count++;
+                            }
+                        }
+                    }
+                    if (count == Abs(oldY - newY))
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+            else if (!IsWhite && ChessMap.cells[newX, newY].figure != null && ChessMap.cells[newX, newY].figure.IsWhite)
+            {
+                if (Abs(oldX - newX) != 0 && oldY == newY)
+                {
+                    if (oldX > newX)
+                    {
+                        int i = oldX;
+                        while (i > newX)
+                        {
+                            if (!ChessMap.IsPositionAvailable(i, newY, this))
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                i--;
+                                count++;
+                            }
+                        }
+                    }
+                    else if (oldX < newX)
+                    {
+                        int i = oldX;
+                        while (i < newX)
+                        {
+                            if (!ChessMap.IsPositionAvailable(i, newY, this))
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                i++;
+                                count++;
+                            }
+                        }
+                    }
+                    if (count == Abs(oldX - newX))
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+                else if (Abs(oldY - newY) != 0 && oldX == newX)
+                {
+                    if (oldY > newY)
+                    {
+                        int i = oldY;
+                        while (i > newY)
+                        {
+                            if (!ChessMap.IsPositionAvailable(newX, i, this))
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                i--;
+                                count++;
+                            }
+                        }
+                    }
+                    if (oldY < newY)
+                    {
+                        int i = oldY;
+                        while (i < newY)
+                        {
+                            if (!ChessMap.IsPositionAvailable(newX, i, this))
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                i++;
+                                count++;
+                            }
+                        }
+                    }
+                    if (count == Abs(oldY - newY))
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+            else return false;
         }
     }
 }

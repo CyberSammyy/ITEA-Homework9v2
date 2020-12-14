@@ -61,6 +61,12 @@ namespace ITEA_Homework9v2
         {
             if (IsAlive)
             {
+                if(Attack(oldX, oldY, newX, newY, this))
+                {
+                    ChessMap.ChangePos(oldX, oldY, newX, newY);
+                    MoveCounter++;
+                    return true;
+                }
                 if (Check(oldX, oldY, newX, newY) && ChessMap.IsPositionAvailable(newX, newY, this))
                 {
                     ChessMap.ChangePos(oldX, oldY, newX, newY);
@@ -79,7 +85,15 @@ namespace ITEA_Homework9v2
 
         public override bool Attack(int oldX, int oldY, int newX, int newY, Figure figure)
         {
-            throw new NotImplementedException();
+            if (IsWhite && !ChessMap.IsPositionAvailable(newX, newY, this) && ChessMap.cells[newX, newY].figure != null && !ChessMap.cells[newX, newY].figure.IsWhite)
+            {
+                return true;
+            }
+            else if (!IsWhite && !ChessMap.IsPositionAvailable(newX, newY, this) && ChessMap.cells[newX, newY].figure != null && ChessMap.cells[newX, newY].figure.IsWhite)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }

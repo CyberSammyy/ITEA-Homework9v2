@@ -54,6 +54,12 @@ namespace ITEA_Homework9v2
         {
             if (IsAlive)
             {
+                if (Attack(oldX, oldY, newX, newY, this))
+                {
+                    ChessMap.ChangePos(oldX, oldY, newX, newY);
+                    MoveCounter++;
+                    return true;
+                }
                 if (Check(oldX, oldY, newX, newY))
                 {
                     ChessMap.ChangePos(oldX, oldY, newX, newY);
@@ -72,7 +78,27 @@ namespace ITEA_Homework9v2
 
         public override bool Attack(int oldX, int oldY, int newX, int newY, Figure figure)
         {
-            throw new NotImplementedException();
+            if (/*Abs(oldX - newX) >= 0 && Abs(oldX - oldX) < 2 && Abs(oldY - newY) >= 0 && Abs(oldY - oldY) < 2*/(Abs(oldX - newX) == 1 && oldY == newY) || (Abs(oldY - newY) == 1 && oldX == newX) || (Abs(oldX - newX) == 1 && Abs(oldY - newY) == 1))
+            {
+                if (IsWhite && !ChessMap.IsPositionAvailable(newX, newY, this) && ChessMap.cells[newX, newY].figure != null && !ChessMap.cells[newX, newY].figure.IsWhite)
+                {
+                    if (!ChessMap.IsPositionAvailable(newX, newY, this))
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+                else if (!IsWhite && !ChessMap.IsPositionAvailable(newX, newY, this) && ChessMap.cells[newX, newY].figure != null && ChessMap.cells[newX, newY].figure.IsWhite)
+                {
+                    if (!ChessMap.IsPositionAvailable(newX, newY, this))
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+            else return false;
         }
     }
 }
