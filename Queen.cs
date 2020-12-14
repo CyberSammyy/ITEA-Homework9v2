@@ -12,6 +12,12 @@ namespace ITEA_Homework9v2
         {
 
         }
+
+        public override bool Attack(int oldX, int oldY, int newX, int newY, Figure figure)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Check(int oldX, int oldY, int newX, int newY)
         {
             int count = 0;

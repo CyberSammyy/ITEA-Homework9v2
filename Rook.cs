@@ -124,5 +124,10 @@ namespace ITEA_Homework9v2
 
             }
         }
+
+        public override bool Attack(int oldX, int oldY, int newX, int newY, Figure figure)
+        {
+            return true;
+        }
     }
 }

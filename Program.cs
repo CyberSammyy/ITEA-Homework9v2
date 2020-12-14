@@ -23,14 +23,6 @@ namespace ITEA_Homework9v2
                 arr[1] = Convert.ToInt32(arr1[1]);
                 arr[2] = Convert.ToInt32(arr1[2]);
                 arr[3] = Convert.ToInt32(arr1[3]);
-                //try
-                //{
-                //    r = Convert.ToChar(arr1[4]);
-                //}
-                //catch(Exception ex)
-                //{
-                //    r = '\0';
-                //}
                 if (count % 2 == 0 && ChessMap.MoveWhite(arr[0], arr[1], arr[2], arr[3]))
                 {
                     count++;

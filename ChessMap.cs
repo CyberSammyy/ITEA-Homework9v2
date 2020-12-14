@@ -41,12 +41,16 @@ namespace ITEA_Homework9v2
                     Render();
                     return false;
                 }
-                if(cells[oldX - 1, oldY - 1].figure.Move(oldX - 1, oldY - 1, newX - 1, newY - 1))
+                if (cells[oldX - 1, oldY - 1].figure.Move(oldX - 1, oldY - 1, newX - 1, newY - 1))
                 {
                     Render();
                     return true;
                 }
-                else return false;
+                else
+                {
+                    Render();
+                    return false;
+                }
             }
             else
             {
@@ -68,7 +72,11 @@ namespace ITEA_Homework9v2
                     Render();
                     return true;
                 }
-                else return false;
+                else
+                {
+                    Render();
+                    return false;
+                }
             }
             else
             {

@@ -23,6 +23,12 @@ namespace ITEA_Homework9v2
             {
                 if (Abs(oldX - newX) == Abs(oldY - newY))
                 {
+                    if (Attack(oldX, oldY, newX, newY, this))
+                    {
+                        ChessMap.ChangePos(oldX, oldY, newX, newY);
+                        MoveCounter++;
+                        return true;
+                    }
                     if (Check(oldX, oldY, newX, newY))
                     {
                         if (ChessMap.IsPositionAvailable(newX, newY, this))
@@ -120,9 +126,152 @@ namespace ITEA_Homework9v2
             else return false;
         }
 
-        //public override void Attack(int newX, int newY)
-        //{
-        //    if()
-        //}
+        public override bool Attack(int oldX, int oldY, int newX, int newY, Figure figure)
+        {
+            int count = 0;
+            int i = oldX;
+            int j = oldY;
+            if (Abs(oldX - newX) == Abs(oldY - newY) && IsWhite && ChessMap.cells[newX, newY].figure != null && !ChessMap.cells[newX, newY].figure.IsWhite)
+            {
+                if (oldX > newX && oldY > newY)
+                {
+                    while (i > newX && j > newY)
+                    {
+                        if (ChessMap.cells[i, j].IsFigureKeeper == true && ChessMap.cells[i, j].figure != figure)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            i--;
+                            j--;
+                            count++;
+                        }
+
+                    }
+                }
+                else if (oldX > newX && oldY < newY)
+                {
+                    while (i > newX && j < newY)
+                    {
+                        if (ChessMap.cells[i, j].IsFigureKeeper == true && ChessMap.cells[i, j].figure != figure)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            i--;
+                            j++;
+                            count++;
+                        }
+                    }
+                }
+                else if (oldX < newX && oldY < newY)
+                {
+                    while (i < newX && j < newY)
+                    {
+                        if (ChessMap.cells[i, j].IsFigureKeeper == true && ChessMap.cells[i, j].figure != figure)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            i++;
+                            j++;
+                            count++;
+                        }
+                    }
+                }
+                else if (oldX < newX && oldY > newY)
+                {
+                    while (i < newX && j > newY)
+                    {
+                        if (ChessMap.cells[i, j].IsFigureKeeper == true && ChessMap.cells[i, j].figure != figure)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            i++;
+                            j--;
+                            count++;
+                        }
+                    }
+                }
+            }
+            else if (Abs(oldX - newX) == Abs(oldY - newY) && !IsWhite && ChessMap.cells[newX, newY].figure != null && ChessMap.cells[newX, newY].figure.IsWhite)
+            {
+                if (oldX > newX && oldY > newY)
+                {
+                    while (i > newX && j > newY)
+                    {
+                        if (ChessMap.cells[i, j].IsFigureKeeper == true && ChessMap.cells[i, j].figure != figure)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            i--;
+                            j--;
+                            count++;
+                        }
+
+                    }
+                }
+                else if (oldX > newX && oldY < newY)
+                {
+                    while (i > newX && j < newY)
+                    {
+                        if (ChessMap.cells[i, j].IsFigureKeeper == true && ChessMap.cells[i, j].figure != figure)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            i--;
+                            j++;
+                            count++;
+                        }
+                    }
+                }
+                else if (oldX < newX && oldY < newY)
+                {
+                    while (i < newX && j < newY)
+                    {
+                        if (ChessMap.cells[i, j].IsFigureKeeper == true && ChessMap.cells[i, j].figure != figure)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            i++;
+                            j++;
+                            count++;
+                        }
+                    }
+                }
+                else if (oldX < newX && oldY > newY)
+                {
+                    while (i < newX && j > newY)
+                    {
+                        if (ChessMap.cells[i, j].IsFigureKeeper == true && ChessMap.cells[i, j].figure != figure)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            i++;
+                            j--;
+                            count++;
+                        }
+                    }
+                }
+            }
+            if (count == Abs(oldX - newX))
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }

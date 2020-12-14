@@ -46,6 +46,6 @@ namespace ITEA_Homework9v2
 
         }
         public abstract bool Move(int oldX, int oldY, int newX, int newY);
-        //public abstract void Attack(int oldX, int oldY, int newX, int newY);
+        public abstract bool Attack(int oldX, int oldY, int newX, int newY, Figure figure);
     }
 }

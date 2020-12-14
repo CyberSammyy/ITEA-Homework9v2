@@ -25,7 +25,11 @@ namespace ITEA_Homework9v2
                 }
                 else if (Abs(oldX - newX) > MoveCounter || Abs(oldY - newY) > MoveCounter)
                 {
-                    Attack(oldX, oldY, newX, newY);
+                    if(Attack(oldX, oldY, newX, newY, this))
+                    {
+                        MoveCounter++;
+                        return true;
+                    }
                     if (MoveCounter == 0)
                     {
                         if (oldX + 1 < 8 && oldY - 1 >= 0 && ChessMap.cells[oldX + 1, oldY - 1].IsFigureKeeper)
@@ -64,6 +68,11 @@ namespace ITEA_Homework9v2
                 }
                 else
                 {
+                    if (Attack(oldX, oldY, newX, newY, this))
+                    {
+                        MoveCounter++;
+                        return true;
+                    }
                     if (oldX + 1 < 8 && oldY - 1 >= 0 && ChessMap.cells[oldX + 1, oldY - 1].IsFigureKeeper)
                     {
                         //ChessMap.Attack();
@@ -96,13 +105,13 @@ namespace ITEA_Homework9v2
 
         public bool Check(int oldX, int oldY, int newX, int newY)
         {
-            if (oldX - newX >= 0 && oldX - newX == 1)
+            if (oldX - newX == 1)
             {
-                if (oldY - newY >= 0 && oldY - newY == 1)
+                if (oldY - newY == -1)
                 {
                     return true;
                 }
-                else if (oldY - newY >= 0 && oldY - newY == -1)
+                else if (oldY - newY == 1) 
                 {
                     return true;
                 }
@@ -111,7 +120,7 @@ namespace ITEA_Homework9v2
             else return false;
         }
 
-        public /*override*/ void Attack(int oldX, int oldY, int newX, int newY)
+        public override bool Attack(int oldX, int oldY, int newX, int newY, Figure figure)
         {
             if (Check(oldX, oldY, newX, newY) && IsWhite && !ChessMap.IsPositionAvailable(newX, newY, this) && !ChessMap.cells[newX, newY].figure.IsWhite)
             {
@@ -120,6 +129,7 @@ namespace ITEA_Homework9v2
                 ChessMap.cells[newX, newY].IsFigureKeeper = false;
                 ChessMap.cells[newX, newY].CanMove = true;
                 ChessMap.ChangePos(oldX, oldY, newX, newY);
+                return true;
             }
             else if (Check(oldX, oldY, newX, newY) && !IsWhite && !ChessMap.IsPositionAvailable(newX, newY, this) && ChessMap.cells[newX, newY].figure.IsWhite)
             {
@@ -128,8 +138,9 @@ namespace ITEA_Homework9v2
                 ChessMap.cells[newX, newY].IsFigureKeeper = false;
                 ChessMap.cells[newX, newY].CanMove = true;
                 ChessMap.ChangePos(oldX, oldY, newX, newY);
+                return true;
             }
-            else return;
+            else return false;
         }
     }
 }

@@ -77,7 +77,7 @@ namespace ITEA_Homework9v2
             }
         }
 
-        public /*override*/ void Attack(int newX, int newY)
+        public override bool Attack(int oldX, int oldY, int newX, int newY, Figure figure)
         {
             throw new NotImplementedException();
         }
