@@ -21,23 +21,6 @@ namespace ITEA_Homework9v2
                 {
                     return true;
                 }
-                //else if(ChessMap.cells[oldX, oldY + 1].figure != null || ChessMap.cells[oldX, oldY - 1].figure != null)
-                //{
-                //    if(ChessMap.cells[oldX, oldY + 1].figure.Name == "Rook_white1" ||
-                //       ChessMap.cells[oldX, oldY + 1].figure.Name == "Rook_white2" ||
-                //       ChessMap.cells[oldX, oldY - 1].figure.Name == "Rook_white1" ||
-                //       ChessMap.cells[oldX, oldY - 1].figure.Name == "Rook_white2")
-                //    {
-                //        if (oldX == this.oldX && oldY == this.oldY)
-                //        {
-                //            if(ChessMap.IsPositionAvailable(oldX, oldY + 2, this))
-                //            {
-                //                ChessMap.ChangePos(oldX, oldY, oldX, oldY + 2);
-
-                //            }
-                //        }
-                //    }
-                //}
                 else return false;
             }
             else if(IsWhite && MoveCounter == 0 && ChessMap.cells[7,7].figure is Rook && ChessMap.cells[7, 7].figure.IsWhite && ChessMap.cells[7, 6].figure == null && ChessMap.cells[7, 5].figure == null)
@@ -69,13 +52,22 @@ namespace ITEA_Homework9v2
 
         public override bool Move(int oldX, int oldY, int newX, int newY)
         {
-            if (Check(oldX, oldY, newX, newY))
+            if (IsAlive)
             {
-                ChessMap.ChangePos(oldX, oldY, newX, newY);
-                MoveCounter++;
-                return true;
+                if (Check(oldX, oldY, newX, newY))
+                {
+                    ChessMap.ChangePos(oldX, oldY, newX, newY);
+                    MoveCounter++;
+                    return true;
+                }
+                else return false;
             }
-            else return false;
+            else
+            {
+                ChessMap.cells[X, Y].Reset();
+                IsDrawable = false;
+                return false;
+            }
         }
     }
 }

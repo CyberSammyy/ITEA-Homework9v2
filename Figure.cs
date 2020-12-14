@@ -10,6 +10,7 @@ namespace ITEA_Homework9v2
         public string Name { get; set; }
         public bool IsWhite { get; set; }
         public bool IsAlive { get; set; }
+        public bool IsDrawable { get; set; } = true;
         public int X { get; set; }
         public int Y { get; set; }
         public int oldX { get; set; }
@@ -45,5 +46,6 @@ namespace ITEA_Homework9v2
 
         }
         public abstract bool Move(int oldX, int oldY, int newX, int newY);
+        //public abstract void Attack(int oldX, int oldY, int newX, int newY);
     }
 }

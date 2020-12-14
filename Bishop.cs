@@ -19,21 +19,30 @@ namespace ITEA_Homework9v2
         }
         public override bool Move(int oldX, int oldY, int newX, int newY)
         {
-            if (Abs(oldX - newX) == Abs(oldY - newY))
+            if (IsAlive)
             {
-                if (Check(oldX, oldY, newX, newY))
+                if (Abs(oldX - newX) == Abs(oldY - newY))
                 {
-                    if (ChessMap.IsPositionAvailable(newX, newY, this))
+                    if (Check(oldX, oldY, newX, newY))
                     {
-                        ChessMap.ChangePos(oldX, oldY, newX, newY);
-                        MoveCounter++;
-                        return true;
+                        if (ChessMap.IsPositionAvailable(newX, newY, this))
+                        {
+                            ChessMap.ChangePos(oldX, oldY, newX, newY);
+                            MoveCounter++;
+                            return true;
+                        }
+                        else return false;
                     }
                     else return false;
                 }
                 else return false;
             }
-            else return false;
+            else
+            {
+                ChessMap.cells[X, Y].Reset();
+                IsDrawable = false;
+                return false;
+            }
         }
         public bool Check(int oldX, int oldY, int newX, int newY)
         {
@@ -110,5 +119,10 @@ namespace ITEA_Homework9v2
             }
             else return false;
         }
+
+        //public override void Attack(int newX, int newY)
+        //{
+        //    if()
+        //}
     }
 }

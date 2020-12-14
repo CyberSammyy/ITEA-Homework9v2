@@ -93,6 +93,12 @@ namespace ITEA_Homework9v2
             figures[7, 7] = new Rook("♜ ", "Rook_white2", true, 7, 7);
             figures[7, 4] = new King("♚ ", "King_white", true, 7, 4);
             figures[0, 4] = new King("♔ ", "King_black", false, 7, 4);
+            figures[7, 3] = new Queen("♛ ", "Queen_white", true, 7, 3);
+            figures[0, 3] = new Queen("♕ ", "Queen_black", false, 0, 3);
+            figures[7, 1] = new Knight("♞ ", "Knight_white1", true, 7, 1);
+            figures[7, 6] = new Knight("♞ ", "Knight_white2", true, 7, 6);
+            figures[0, 1] = new Knight("♘ ", "Knight_black1", false, 0, 1);
+            figures[0, 6] = new Knight("♘ ", "Knight_black2", false, 0, 6);
             //
             //
             //

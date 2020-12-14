@@ -106,13 +106,23 @@ namespace ITEA_Homework9v2
 
         public override bool Move(int oldX, int oldY, int newX, int newY)
         {
-            if (Check(oldX, oldY, newX, newY) && ChessMap.IsPositionAvailable(newX, newY, this))
+            if (IsAlive)
             {
-                ChessMap.ChangePos(oldX, oldY, newX, newY);
-                MoveCounter++;
-                return true;
+                if (Check(oldX, oldY, newX, newY) && ChessMap.IsPositionAvailable(newX, newY, this))
+                {
+                    ChessMap.ChangePos(oldX, oldY, newX, newY);
+                    MoveCounter++;
+                    return true;
+                }
+                else return false;
             }
-            else return false;
+            else
+            {
+                ChessMap.cells[X, Y].Reset();
+                IsDrawable = false;
+                return false;
+
+            }
         }
     }
 }
