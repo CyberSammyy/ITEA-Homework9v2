@@ -33,54 +33,133 @@ namespace ITEA_Homework9v2
             Render();
             SetFigures();
         }
+        private static bool IsKingAlive(char mode)
+        {
+            if (mode == 'W')
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (cells[i, j].figure is King && !cells[i, j].figure.IsWhite)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            else if(mode == 'B')
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (cells[i, j].figure is King && cells[i, j].figure.IsWhite)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         public static bool MoveWhite(int oldX, int oldY, int newX, int newY)
         {
             if (cells[oldX - 1, oldY - 1].figure != null && cells[oldX - 1, oldY - 1].figure.IsWhite && oldX < 9 && oldX > 0 && oldY < 9 && oldY > 0 && newX < 9 && newX > 0 && newX < 9 && newX > 0)
             {
                 if (cells[oldX - 1, oldY - 1].figure == null)
                 {
+                    if(!IsKingAlive('W'))
+                    {
+                        Console.Write("White won!");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
                     Render();
                     return false;
                 }
                 if (cells[oldX - 1, oldY - 1].figure.Move(oldX - 1, oldY - 1, newX - 1, newY - 1))
                 {
+                    if (!IsKingAlive('W'))
+                    {
+                        Console.Write("White won!");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
                     Render();
                     return true;
                 }
                 else
                 {
+                    if (!IsKingAlive('W'))
+                    {
+                        Console.Write("White won!");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
                     Render();
                     return false;
                 }
             }
             else
             {
+                if (!IsKingAlive('W'))
+                {
+                    Console.Write("White won!");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
                 Render();
                 return false;
             }
         }
         public static bool MoveBlack(int oldX, int oldY, int newX, int newY)
         {
+            
             if (cells[oldX - 1, oldY - 1].figure != null && !cells[oldX - 1, oldY - 1].figure.IsWhite && oldX < 9 && oldX > 0 && oldY < 9 && oldY > 0 && newX < 9 && newX > 0 && newY < 9 && newY > 0)
             {
                 if (cells[oldX - 1, oldY - 1].figure == null)
                 {
+                    if (!IsKingAlive('B'))
+                    {
+                        Console.Write("Black won!");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
                     Render();
                     return false;
                 }
                 if (cells[oldX - 1, oldY - 1].figure.Move(oldX - 1, oldY - 1, newX - 1, newY - 1))
                 {
+                    if (!IsKingAlive('B'))
+                    {
+                        Console.Write("Black won!");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
                     Render();
                     return true;
                 }
                 else
                 {
+                    if (!IsKingAlive('B'))
+                    {
+                        Console.Write("Black won!");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
                     Render();
                     return false;
                 }
             }
             else
             {
+                if (!IsKingAlive('B'))
+                {
+                    Console.Write("Black won!");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
                 Render();
                 return false;
             }
@@ -118,7 +197,6 @@ namespace ITEA_Homework9v2
             figures[0, 3] = null;
             figures[1, 3] = null;
             figures[1, 3] = new Pawn("♟", $"Pawn_white{4}", true, 1, 3);
-
 
 
 
