@@ -19,6 +19,94 @@ namespace ITEA_Homework9v2
         {
             if (IsAlive)
             {
+                if (IsWhite && newX == 0)
+                {
+                    IsAlive = false;
+                    IsDrawable = false;
+                    Console.Clear();
+                    Console.WriteLine("Choose new figure (Rook, Knight, Queen or Bishop.");
+                    while (true)
+                    {
+                        string s = Console.ReadLine();
+                        if (s == "Rook")
+                        {
+                            ChessMap.TurningCount++;
+                            ChessMap.cells[newX, newY].figure = new Rook("♜ ", $"Rook_white3{ChessMap.TurningCount + 2}", true, newX, newY);
+                            ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
+                            return true;
+                        }
+                        else if (s == "Queen")
+                        {
+                            ChessMap.TurningCount++;
+                            ChessMap.cells[newX, newY].figure = new Queen("♛ ", $"Queen_white{ChessMap.TurningCount + 2}", true, newX, newY);
+                            ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
+                            return true;
+                        }
+                        else if (s == "Knight")
+                        {
+                            ChessMap.TurningCount++;
+                            ChessMap.cells[newX, newY].figure = new Knight("♞ ", $"Knight_white{ChessMap.TurningCount + 2}", true, newX, newY);
+                            ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
+                            return true;
+                        }
+                        else if (s == "Bishop")
+                        {
+                            ChessMap.TurningCount++;
+                            ChessMap.cells[newX, newY].figure = new Bishop("♝ ", $"Bishop_white{ChessMap.TurningCount + 2}", true, newX, newY);
+                            ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
+                            return true;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Try Again");
+                        }
+                    }
+                }
+                else if (!IsWhite && newX == 7)
+                {
+                    IsAlive = false;
+                    IsDrawable = false;
+                    Console.Clear();
+                    Console.WriteLine("Choose new figure (Rook, Knight, Queen or Bishop.");
+                    while (true)
+                    {
+                        string s = Console.ReadLine();
+                        if (s == "Rook")
+                        {
+                            ChessMap.TurningCount++;
+                            ChessMap.cells[newX, newY].figure = new Rook("♖ ", $"Rook_black{ChessMap.TurningCount + 2}", false, newX, newY);
+                            ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
+                            return true;
+                        }
+                        else if (s == "Queen")
+                        {
+                            ChessMap.TurningCount++;
+                            ChessMap.cells[newX, newY].figure = new Queen("♕ ", $"Queen_black{ChessMap.TurningCount + 2}", false, newX, newY);
+                            ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
+                            return true;
+                        }
+                        else if (s == "Knight")
+                        {
+                            ChessMap.TurningCount++;
+                            ChessMap.cells[newX, newY].figure = new Knight("♘ ", $"Knight_black{ChessMap.TurningCount + 2}", false, newX, newY);
+                            ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
+                            return true;
+                        }
+                        else if (s == "Bishop")
+                        {
+                            ChessMap.TurningCount++;
+                            ChessMap.cells[newX, newY].figure = new Bishop("♗ ", $"Bishop_black{ChessMap.TurningCount + 2}", false, newX, newY);
+                            ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
+                            return true;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Try Again");
+                        }
+                    }
+                }
                 if (newX > oldX && IsWhite || newX < oldX && !IsWhite)
                 {
                     return false;

@@ -10,6 +10,7 @@ namespace ITEA_Homework9v2
         public static Cell[,] cells = new Cell[8, 8];
         public static Figure[,] figures = new Figure[8, 8];
         public static int MoveCount { get; set; } = 0;
+        public static int TurningCount { get; set; } = 0;
         public static void GenerateMap()
         {
             for(int i = 0; i < 8; i++)
@@ -94,7 +95,7 @@ namespace ITEA_Homework9v2
 
 
 
-            figures[6, 3] = null;
+            //figures[6, 3] = null;
 
 
 
