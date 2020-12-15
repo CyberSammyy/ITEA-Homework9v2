@@ -194,9 +194,9 @@ namespace ITEA_Homework9v2
 
 
 
-            figures[0, 3] = null;
-            figures[1, 3] = null;
-            figures[1, 3] = new Pawn("♟", $"Pawn_white{4}", true, 1, 3);
+            //figures[0, 3] = null;
+            //figures[1, 3] = null;
+            //figures[1, 3] = new Pawn("♟", $"Pawn_white{4}", true, 1, 3);
 
 
 
