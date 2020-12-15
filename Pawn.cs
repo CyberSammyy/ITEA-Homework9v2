@@ -31,6 +31,7 @@ namespace ITEA_Homework9v2
                         if (s == "Rook")
                         {
                             ChessMap.TurningCount++;
+                            ChessMap.cells[oldX, oldY].Reset();
                             ChessMap.cells[newX, newY].figure = new Rook("♜ ", $"Rook_white3{ChessMap.TurningCount + 2}", true, newX, newY);
                             ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
                             return true;
@@ -38,6 +39,7 @@ namespace ITEA_Homework9v2
                         else if (s == "Queen")
                         {
                             ChessMap.TurningCount++;
+                            ChessMap.cells[oldX, oldY].Reset();
                             ChessMap.cells[newX, newY].figure = new Queen("♛ ", $"Queen_white{ChessMap.TurningCount + 2}", true, newX, newY);
                             ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
                             return true;
@@ -45,6 +47,7 @@ namespace ITEA_Homework9v2
                         else if (s == "Knight")
                         {
                             ChessMap.TurningCount++;
+                            ChessMap.cells[oldX, oldY].Reset();
                             ChessMap.cells[newX, newY].figure = new Knight("♞ ", $"Knight_white{ChessMap.TurningCount + 2}", true, newX, newY);
                             ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
                             return true;
@@ -52,6 +55,7 @@ namespace ITEA_Homework9v2
                         else if (s == "Bishop")
                         {
                             ChessMap.TurningCount++;
+                            ChessMap.cells[oldX, oldY].Reset();
                             ChessMap.cells[newX, newY].figure = new Bishop("♝ ", $"Bishop_white{ChessMap.TurningCount + 2}", true, newX, newY);
                             ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
                             return true;
@@ -75,6 +79,7 @@ namespace ITEA_Homework9v2
                         if (s == "Rook")
                         {
                             ChessMap.TurningCount++;
+                            ChessMap.cells[oldX, oldY].Reset();
                             ChessMap.cells[newX, newY].figure = new Rook("♖ ", $"Rook_black{ChessMap.TurningCount + 2}", false, newX, newY);
                             ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
                             return true;
@@ -82,6 +87,7 @@ namespace ITEA_Homework9v2
                         else if (s == "Queen")
                         {
                             ChessMap.TurningCount++;
+                            ChessMap.cells[oldX, oldY].Reset();
                             ChessMap.cells[newX, newY].figure = new Queen("♕ ", $"Queen_black{ChessMap.TurningCount + 2}", false, newX, newY);
                             ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
                             return true;
@@ -89,6 +95,7 @@ namespace ITEA_Homework9v2
                         else if (s == "Knight")
                         {
                             ChessMap.TurningCount++;
+                            ChessMap.cells[oldX, oldY].Reset();
                             ChessMap.cells[newX, newY].figure = new Knight("♘ ", $"Knight_black{ChessMap.TurningCount + 2}", false, newX, newY);
                             ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
                             return true;
@@ -96,6 +103,7 @@ namespace ITEA_Homework9v2
                         else if (s == "Bishop")
                         {
                             ChessMap.TurningCount++;
+                            ChessMap.cells[oldX, oldY].Reset();
                             ChessMap.cells[newX, newY].figure = new Bishop("♗ ", $"Bishop_black{ChessMap.TurningCount + 2}", false, newX, newY);
                             ChessMap.cells[newX, newY].Icon = ChessMap.cells[newX, newY].figure.Icon;
                             return true;

@@ -92,13 +92,6 @@ namespace ITEA_Homework9v2
                 figures[6,i] = new Pawn("♟", $"Pawn_white{i + 1}", true, 6, i);
                 figures[1,i] = new Pawn("♙ ", $"Pawn_black{i + 1}", false, 1, i);
             }
-
-
-
-            //figures[6, 3] = null;
-
-
-
             figures[7, 2] = new Bishop("♝ ", "Bishop_white1", true, 7, 2);
             figures[7, 5] = new Bishop("♝ ", "Bishop_white2", true, 7, 2);
             figures[0, 5] = new Bishop("♗ ", "Bishop_black1", false, 0, 2);
@@ -115,6 +108,22 @@ namespace ITEA_Homework9v2
             figures[7, 6] = new Knight("♞ ", "Knight_white2", true, 7, 6);
             figures[0, 1] = new Knight("♘ ", "Knight_black1", false, 0, 1);
             figures[0, 6] = new Knight("♘ ", "Knight_black2", false, 0, 6);
+            //
+            //
+            //
+
+
+
+
+            figures[0, 3] = null;
+            figures[1, 3] = null;
+            figures[1, 3] = new Pawn("♟", $"Pawn_white{4}", true, 1, 3);
+
+
+
+
+
+
             //
             //
             //
